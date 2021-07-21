@@ -1,0 +1,21 @@
+{
+  "name": "lcdb-server",
+  "version": "0.0.1",
+  "description": "Server api for lcdb.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d3tu/lcdb-server.git"
+  },
+  "keywords": ["lcdb", "server"],
+  "author": "d3tu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/d3tu/lcdb-server/issues"
+  },
+  "homepage": "https://github.com/d3tu/lcdb-server#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "lcdb": "^5.1.9"
+  }
+}
