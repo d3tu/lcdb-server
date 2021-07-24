@@ -29,7 +29,7 @@ module.exports = ({ cacheTimeout = 15000, auth, wsOptions } = {}) => {
 				value,
 				op,
 				auth: pass
-			} = JSON.parse(body);
+			} = JSON.parse(message);
 
 			if (op === 'login') {
 				if (pass === auth) return client.send('CONNECTED');
