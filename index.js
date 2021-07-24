@@ -26,10 +26,8 @@ module.exports = ({
       } = JSON.parse(body);
       
       if (op === "login") {
-        if (pass === auth) {
-          client.send("CONNECTED");
-        } else client.close();
-        return;
+        if (pass === auth) return client.send("CONNECTED");
+        else return client.close();
       }
       
       if (!dbs[db]) dbs[db] = lcdb(db, options);
