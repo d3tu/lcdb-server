@@ -4,7 +4,8 @@ Server api for lcdb.
 require("lcdb-server")({
   cacheTimeout: 15000,
   auth: "secret",
-  wsOptions: {},
-  port: 8080
+  wsOptions: {
+    port: 8080
+  }
 });
 ```
