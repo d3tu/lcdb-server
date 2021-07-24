@@ -7,7 +7,10 @@
     "type": "git",
     "url": "git+https://github.com/d3tu/lcdb-server.git"
   },
-  "keywords": ["lcdb", "server"],
+  "keywords": [
+    "lcdb",
+    "server"
+  ],
   "author": "d3tu",
   "license": "MIT",
   "bugs": {
@@ -15,7 +18,7 @@
   },
   "homepage": "https://github.com/d3tu/lcdb-server#readme",
   "dependencies": {
-    "ws": "^7.5.3",
-    "lcdb": "^5.1.9"
+    "lcdb": "^5.1.9",
+    "ws": "^7.5.3"
   }
 }
