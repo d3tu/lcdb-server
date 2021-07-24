@@ -1,6 +1,6 @@
 {
   "name": "lcdb-server",
-  "version": "0.0.3",
+  "version": "0.0.2",
   "description": "Server api for lcdb.",
   "main": "index.js",
   "repository": {
