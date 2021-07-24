@@ -1,5 +1,5 @@
 const lcdb = require("lcdb"),
-  { Server } = require("express"),
+  { Server } = require("ws"),
   dbs = {},
   times = new Map();
 
