@@ -1,6 +1,6 @@
 {
   "name": "lcdb-server",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Server api for lcdb.",
   "main": "index.js",
   "repository": {
@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/d3tu/lcdb-server#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "ws": "^7.5.3",
     "lcdb": "^5.1.9"
   }
 }

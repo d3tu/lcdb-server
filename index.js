@@ -1,14 +1,16 @@
 const lcdb = require("lcdb"),
-  express = require("express"),
-  app = express(),
+  { Server } = require("express"),
   dbs = {},
   times = new Map();
 
 module.exports = ({
   cacheTimeout = 15000,
   auth,
+  wsOptions,
   port
-}) => {
+} = {}) => {
+  const server = new Server(wsOptions);
+  
   setInterval(() => times.forEach((value, key) => {
     if (Date.now() - value >= cacheTimeout) {
       times.delete(key);
@@ -17,27 +19,27 @@ module.exports = ({
     }
   }), cacheTimeout);
   
-  app.get("/", (req, res) => res.send("ok"));
-  
-  app.post("/", (req, res) => {
-    if (req.headers.authorization !== auth) return res.end();
-    
-    var body = "";
-    
-    req.on("data", data => {
-      body += data;
-    }).on("end", () => {
+  server.on("connection", client => {
+    client.on("message", message => {
       const {
-        db, options, method, ref, value
+        id, db, options, method, ref, value, op, auth: pass
       } = JSON.parse(body);
+      
+      if (op === "login") {
+        if (pass === auth) {
+          client.send("CONNECTED");
+        } else client.close();
+        return;
+      }
       
       if (!dbs[db]) dbs[db] = lcdb(db, options);
       
-      res.json({
+      client.send(JSON.stringify({
+        id,
         data: dbs[db][method] ? dbs[db][method](ref, value) : null
-      });
+      }));
     });
   });
   
-  app.listen(port);
+  server.listen(port);
 };
