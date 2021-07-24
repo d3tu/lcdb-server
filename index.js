@@ -9,7 +9,7 @@ module.exports = ({
   wsOptions,
   port
 } = {}) => {
-  const server = new Server(wsOptions);
+  const server = new Server(Object.assign({}, wsOptions, { port }));
   
   setInterval(() => times.forEach((value, key) => {
     if (Date.now() - value >= cacheTimeout) {
@@ -38,6 +38,4 @@ module.exports = ({
       }));
     });
   });
-  
-  server.listen(port);
 };
