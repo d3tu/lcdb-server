@@ -19,6 +19,7 @@ module.exports = ({ cacheTimeout = 15000, auth, wsOptions } = {}) => {
 	);
 
 	server.on('connection', client => {
+	  var connected = false;
 		client.on('message', message => {
 			const {
 				id,
@@ -32,9 +33,14 @@ module.exports = ({ cacheTimeout = 15000, auth, wsOptions } = {}) => {
 			} = JSON.parse(message);
 
 			if (op === 'login') {
-				if (pass === auth) return client.send('CONNECTED');
+				if (pass === auth) {
+				  connected = true;
+				  return client.send('CONNECTED');
+				}
 				else return client.close();
 			}
+			
+			if (!connected) return;
 
 			if (!dbs[db]) dbs[db] = lcdb(db, options);
 
